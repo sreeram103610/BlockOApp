@@ -1,0 +1,160 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+     >
+
+    <TextView
+        android:id="@+id/textViewEventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="26sp"
+         />
+	
+    <TextView
+        android:id="@+id/textViewEventDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewEventName"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="14sp"
+         />
+    
+    <LinearLayout
+        android:id="@+id/textViewEventDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewEventDate"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:background="#29B3D9"
+        android:orientation="horizontal" >
+        
+        <LinearLayout
+        android:id="@+id/layoutCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+        
+            <TextView 
+                android:id="@+id/textViewCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COUNT"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                />
+            
+            <TextView
+                android:id="@+id/textViewCountValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                />
+        </LinearLayout>
+        
+        <View
+            android:id="@+id/imageViewDivider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="#55000000" />
+        
+        <LinearLayout
+        android:id="@+id/layoutPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+        
+            <TextView 
+                android:id="@+id/textViewPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POINTS"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                />
+            
+            <TextView
+                android:id="@+id/textViewPointsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                />
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/optionsButtonGroup"
+        android:layout_below="@id/textViewEventDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#55F4F400"
+        style="?android:attr/buttonBarStyle"
+        android:orientation="horizontal">
+        
+        <Button
+	        android:id="@+id/buttonStartEvent"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Start"
+	        android:textSize="20sp"
+	        android:textColor="#000000"
+	        style="?android:attr/buttonBarButtonStyle"
+	         />
+        
+        <Button
+            android:id="@+id/buttonResumeEvent"
+            android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Resume"
+	        android:textSize="20sp"
+	        android:textColor="#000000"
+	        android:visibility="gone"
+	        style="?android:attr/buttonBarButtonStyle"
+	         />
+        
+         <Button
+            android:id="@+id/buttonEndEvent"
+            android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="#000000"
+			android:textSize="20sp"
+			android:visibility="gone"
+	        android:text="End"
+	        style="?android:attr/buttonBarButtonStyle"
+	         />
+        
+    </LinearLayout>
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/optionsButtonGroup"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+             
+        <TableLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/usersTable"
+        />
+    </ScrollView>
+    
+        
+</RelativeLayout>
