@@ -21,5 +21,6 @@
     <string name="delete_name">Delete</string>
     <string name="view_name">View</string>
     <string name="title_activity_event">EventActivity</string>
+    <string name="event_time_hint">(Time)</string>
 
 </resources>

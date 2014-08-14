@@ -1420,6 +1420,7 @@ containing a value of this type.
         public static final int event_points=0x7f0b0094;
         public static final int event_points_hint=0x7f0b0095;
         public static final int event_time=0x7f0b0096;
+        public static final int event_time_hint=0x7f0b009b;
         public static final int export_name=0x7f0b0097;
         public static final int hello_world=0x7f0b0088;
         public static final int history_clear_one_history_text=0x7f0b0021;
