@@ -140,7 +140,7 @@
     
     <EditText
         android:id="@+id/editTextEventTime"
-        android:hint="@string/event_points"
+        android:hint="@string/event_time_hint"
         android:inputType="number"
         android:layout_below="@id/textViewEventDate"
         android:layout_toRightOf="@id/editTextEventDate"

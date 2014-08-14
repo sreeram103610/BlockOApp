@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -62,6 +63,7 @@ public class EventsActivity extends Activity {
 	private final static int THREE = 3;
 	static final String EVENTS = "Events";
 	static final String TAG = "slidingPanel";
+	protected static final CharSequence STRING_ENTER_FORM_DATA = "All fields required";
 	PinnedSectionListView mEventsListView;
 	MySimpleSectionsAdapter mSimpleSectionsAdapter;
 	ArrayList<HashMap<String, ?>> mEventsList;
@@ -200,8 +202,11 @@ public class EventsActivity extends Activity {
 						
 						@Override
 						public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-							mTimeEditText.setText(hourOfDay+ ":" + minute);
+							
+							if(minute >= 10)
+								mTimeEditText.setText(hourOfDay+ ":" + minute);
+							else
+								mTimeEditText.setText(hourOfDay + ":" + "0" + minute);
 						}
 					}, tHour, tMinutes, true);
 			
@@ -321,8 +326,17 @@ public class EventsActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	public boolean validateFormData() {
+		
+		if(mEventNameEditText.length() > 0 && mDateEditText.length() > 0 && mTimeEditText.length() > 0 && mEventPointsEditText.length() > 0) {
+			
+			return true;
+		}
+		return false;
+	}
 	public void initListeners()
 	{
+		
 		mOnFocusListener = new OnFocusChangeListener() {
 
 			@Override
@@ -348,8 +362,6 @@ public class EventsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
-				Log.i("onItemClick", "listItem");
 				
 				ListItem listItem = (ListItem) parent.getAdapter().getItem(position);
 				
@@ -370,18 +382,20 @@ public class EventsActivity extends Activity {
 				switch(v.getId()) {
 				
 					case R.id.buttonSave:
-						validateForm();
-						addFormDataToTable();
-						mLayout.collapsePanel();
-						updateAdapterData();
-					/*	if(mEventsListView.getVisibility() == View.GONE) {
+						if(validateFormData()) {
+							addFormDataToTable();
+							mLayout.collapsePanel();
 							
-							mEventsListView.setVisibility(View.VISIBLE);
-							mNoEventsTextView.setVisibility(View.GONE);
-							mEventsListView.setAdapter(mSimpleSectionsAdapter);
-						} */
-						mSimpleSectionsAdapter.notifyDataSetChanged();
-
+							updateAdapterData();
+							clearForm();
+			
+							mSimpleSectionsAdapter.notifyDataSetChanged();
+						}
+						else {
+							
+							Toast.makeText(getBaseContext(), STRING_ENTER_FORM_DATA, Toast.LENGTH_SHORT).show();
+						}
+						
 						break;
 					
 					case R.id.imageButtonEventOptions:
@@ -393,7 +407,9 @@ public class EventsActivity extends Activity {
 						break;
 						
 					case R.id.buttonDiscard:
+						clearForm();
 						mLayout.collapsePanel();
+				
 						break;
 						
 					case R.id.editTextEventDate:
@@ -409,6 +425,7 @@ public class EventsActivity extends Activity {
 			
 		};
 		
+		
 		mDateEditText.setOnFocusChangeListener(mOnFocusListener);
 		mTimeEditText.setOnFocusChangeListener(mOnFocusListener);
 		
@@ -422,8 +439,12 @@ public class EventsActivity extends Activity {
 		
 	}
 	
-	public void validateForm() {
+	public void clearForm() {
 		
+		mEventNameEditText.setText("");
+		mEventPointsEditText.setText("");
+		mTimeEditText.setText("");
+		mDateEditText.setText("");
 	}
 	public void setAdapterData() {
 		
